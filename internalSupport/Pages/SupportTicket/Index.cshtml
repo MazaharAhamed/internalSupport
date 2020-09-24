@@ -1,0 +1,138 @@
+﻿@page
+@model internalSupport.Pages.SupportTicket.IndexModel
+
+<a href="\Index">Create New</a> |
+<a href="\SupportAnalyst\Index">Support Analysts</a> |
+<a href="\LookUp\Index">Look Ups</a>
+<br />
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <label asp-for="Request.FirstOrDefault().Id"></label>
+            </th>
+            <th>
+                <label asp-for="Request.FirstOrDefault().Subject"></label>
+            </th>
+            <th>
+                <label asp-for="Request.FirstOrDefault().Created"></label>
+            </th>
+            <th>
+                <label asp-for="Request.FirstOrDefault().Updated"></label>
+            </th>
+            <th>
+                <label asp-for="Request.FirstOrDefault().Status"></label>
+            </th>
+            <th>
+                <label asp-for="Request.FirstOrDefault().Assigned"></label>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Request)
+        {
+            var cd = @item.Created.ToString("MMM dd");
+            if (item.Status == "Pending" || item.Status == "InProgress" || item.Status == null)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Subject)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => cd)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Updated)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Assigned)
+                </td>
+                <td>
+                    <a asp-page="Edit" asp-route-id="@item.Id">Edit</a>
+                </td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>
+<br />
+<br />
+
+<h5>Closed Tickets</h5>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <label asp-for="Request.FirstOrDefault().Id"></label>
+            </th>
+            <th>
+                <label asp-for="Request.FirstOrDefault().Subject"></label>
+            </th>
+            <th>
+                <label asp-for="Request.FirstOrDefault().Created"></label>
+            </th>
+            <th>
+                <label asp-for="Request.FirstOrDefault().Updated"></label>
+            </th>
+            <th>
+               
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Request)
+        {
+            var cd = item.Created.ToString("MMM dd");
+            if (item.Status == "Closed")
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Subject)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => cd)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Updated)
+                </td>
+                <td>
+                   
+                </td>
+                <td>
+                    <a asp-page="Edit" asp-route-id="@item.Id">Edit</a>
+                </td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>
+<div class="col-2 offset-10">
+    @{
+        var prevDisabled = !Model.Request.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.Request.HasNextPage ? "disabled" : "";
+    }
+
+
+    <a asp-page="./Index"
+       asp-route-pageIndex="@(Model.Request.PageIndex - 1)"
+       class="btn btn-primary @prevDisabled">
+        Previous
+    </a>
+
+    <a asp-page="./Index"
+       asp-route-pageIndex="@(Model.Request.PageIndex + 1)"
+       class="btn btn-primary @nextDisabled">
+        Next
+    </a>
+</div>

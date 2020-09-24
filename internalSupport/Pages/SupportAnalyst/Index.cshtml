@@ -1,0 +1,46 @@
+﻿@page
+@model internalSupport.Pages.SupportAnalyst.IndexModel
+
+<br />
+@*<div id="PlaceHolderHere"></div>*@
+@*<button type="button" class="btn btn-primary" data-toggle="ajax-modal" data-target="#addSupportAnalyst" data-url="@Url.Action("OnGet")">Create</button>*@
+<form method="post">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <label asp-for="SupportAnalystt.FirstOrDefault().SupportAnalystId"></label>
+                </th>
+                <th>
+                    <label asp-for="SupportAnalystt.FirstOrDefault().Name"></label>
+                </th>
+                <th>
+                    <label asp-for="SupportAnalystt.FirstOrDefault().Email"></label>
+                </th>
+                <th>
+                    <input type="submit" value="Create New" asp-page="./Create" class="btn btn-primary" />
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.SupportAnalystt)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => item.SupportAnalystId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Email)
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-primary" asp-page-handler="Edit " asp-route-id="@item.SupportAnalystId">Edit</button>
+                        <button type="submit" class="btn btn-danger" asp-page-handler="Delete" asp-route-id="@item.SupportAnalystId">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>

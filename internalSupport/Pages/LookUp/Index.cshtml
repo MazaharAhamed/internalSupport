@@ -1,0 +1,35 @@
+﻿@page
+@model internalSupport.Pages.LookUp.IndexModel
+
+<h4>Internal Support LookUps</h4>
+<br />
+<a asp-page="Index">Companies</a>
+<br />
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <label asp-for="Look.FirstOrDefault().Id"></label>
+            </th>
+            <th>
+                <label asp-for="Look.FirstOrDefault().Description"></label>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Look)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Description)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

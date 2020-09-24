@@ -1,0 +1,116 @@
+﻿@page
+@model internalSupport.Pages.ViewModel
+
+<a href="\Index">Create New</a> |
+<a href="\SupportAnalyst\Index">Support Analysts</a> |
+<a href="\LookUp\Index">Look Ups</a>
+<br />
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Request[0].Your_Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Request[0].Subject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Request[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Request[0].Created)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Request[0].Updated)
+            </th>*@
+            @*<th>
+                <label asp-for="Request.FirstOrDefault().Status"></label>
+            </th>
+            <th>
+                <label asp-for="Request.FirstOrDefault().Assignee"></label>
+            </th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Request)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.Your_Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Subject)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Created)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(m => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Assignee)
+                </td>*@
+                <td>
+                    <a asp-page="Edit" asp-route-id="@item.Id">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<br />
+
+<h5>Closed Tickets</h5>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <label asp-for="Request.FirstOrDefault().Id"></label>
+            </th>
+            <th>
+                <label asp-for="Request.FirstOrDefault().Subject"></label>
+            </th>
+            <th>
+                <label asp-for="Request.FirstOrDefault().Created"></label>
+            </th>
+            <th>
+                <label asp-for="Request.FirstOrDefault().Updated"></label>
+            </th>
+            <th>
+                
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Request)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Subject)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Created)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Updated)
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    <a asp-page="Edit" asp-route-id="@item.Id">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

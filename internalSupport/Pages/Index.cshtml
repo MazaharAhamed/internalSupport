@@ -1,0 +1,39 @@
+﻿@page
+@model internalSupport.Pages.IndexModel
+
+<h4>Submit a request</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-8">
+        <form enctype="multipart/form-data" method="post">
+            <input hidden asp-for="Request.pathFile" />
+            <div class="form-group">
+                <label class="control-label" asp-for="Request.Your_Email"></label>
+                <input class="form-control" asp-for="Request.Your_Email" required type="text" />
+            </div>
+            <div class="form-group">
+                <label class="control-label" asp-for="Request.Subject"></label>
+                <input class="form-control" asp-for="Request.Subject" required type="text" />
+            </div>
+            <div class="form-group">
+                <label class="control-label" asp-for="Request.Description">Description</label>
+                <textarea class="form-control" rows="6" cols="61" asp-for="Request.Description"></textarea>
+                <span class="small"> Please enter the details of your request. A member of our support staff will respond as soon as possible.</span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" asp-for="filee">Attachments(Optional)</label><br />
+                <input asp-for="filee"  type="file" multiple="multiple" class="dz-hidden-input" name="filee" />
+            </div>
+            <div class="form-group">
+                <div class="col-2 offset-10">
+                    <input type="submit" value="Create" asp-page="SupportTicket/Confirmation" class="btn btn-primary form-control" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{ 
+<partial name="_ValidationScriptsPartial" />
+}
