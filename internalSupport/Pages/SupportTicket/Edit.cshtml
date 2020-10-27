@@ -56,10 +56,11 @@
 
 <script>
     function downloadAttachment() {
-        var fileName = "@Html.Raw(Model.Requestt.pathFile)";
+        var fileName = "@Html.Raw(Json.Serialize(Model.Requestt.pathFile))";
+        var parseFileName = JSON.parse(fileName)
         //fileName = fileName.replace(/\"/g, "");
-        fileName.substring(1, fileName.length - 1);
-        var downloadAttachmentUrl='/files/fileName'
+        //fileName.substring(1, fileName.length - 1);
+        var downloadAttachmentUrl = '/files ${fileName}';
         window.location.href = downloadAttachmentUrl;
     }
 </script>

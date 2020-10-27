@@ -10,14 +10,14 @@ using internalSupport.Model;
 namespace internalSupport.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200924122853_AddRequestToDb")]
+    [Migration("20201013130420_AddRequestToDb")]
     partial class AddRequestToDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.7")
+                .HasAnnotation("ProductVersion", "3.1.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
